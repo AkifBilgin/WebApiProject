@@ -49,6 +49,10 @@ namespace HotelProjectWebAPi
             services.AddScoped<IAboutUsDal, EfAboutUsDal>();
             services.AddScoped<IAboutUsService, AboutUsManager>();
 
+
+            services.AddScoped<IBookingDal, EfBookingDal>();
+            services.AddScoped<IBookingService, BookingManager>();
+
             services.AddAutoMapper(typeof(Startup));
 			services.AddCors(opt =>
 			{

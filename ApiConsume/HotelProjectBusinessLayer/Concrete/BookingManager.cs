@@ -18,6 +18,16 @@ namespace HotelProjectBusinessLayer.Concrete
             _bookingDal = bookingDal;
         }
 
+        public void ConfirmBookingStatus(Booking booking)
+        {
+            _bookingDal.ConfirmBookingStatus(booking);
+        }
+
+        public void ConfirmBookingStatus2(int id)
+        {
+            _bookingDal.ConfirmBookingStatus2(id); 
+        }
+
         public void TAdd(Booking entity)
         {
             _bookingDal.Add(entity);

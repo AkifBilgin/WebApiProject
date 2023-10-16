@@ -22,7 +22,7 @@ namespace HotelProjectWebAPi.Controllers
            var values =  _bookingService.TGetAll();
             return Ok(values);
         }
-        [HttpPost]
+        [HttpPost("AddBooking")]
         public IActionResult AddBooking(Booking booking)
         {
             _bookingService.TAdd(booking);
@@ -47,6 +47,20 @@ namespace HotelProjectWebAPi.Controllers
         {
             var value = _bookingService.TGetById(id);
             return Ok(value);
+        }
+
+        [HttpPut("ConfirmBooking")]
+        public IActionResult ConfirmBooking(Booking booking)
+        {
+             _bookingService.ConfirmBookingStatus(booking);
+            return Ok();
+        }
+
+        [HttpPut("ConfirmBooking2")]
+        public IActionResult ConfirmBooking2(int id)
+        {
+            _bookingService.ConfirmBookingStatus2(id);
+            return Ok();
         }
     }
 }

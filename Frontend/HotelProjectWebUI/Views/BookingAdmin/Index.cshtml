@@ -1,0 +1,55 @@
+﻿@model List<ResultBookingDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">
+                <h4>Buchungen</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Gast</th>
+                            <th>Checkin</th>
+                            <th>Checkout</th>
+                            <th>Status</th>
+                            <th>Bearbeiten</th>
+                
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.Name</th>
+                                <td>@item.Checkin.ToShortDateString()</td>
+                                <td>@item.Checkout.ToShortDateString()</td>
+                                <td><span class="badge badge-primary px-2">@item.Status</span></td>
+                               @*  <td><a href="" class="btn btn-outline-primary">Bestätigen</a></td> *@
+                                <td>
+                                    <span>
+                                        <a href="/BookingAdmin/ConfirmBooking/@item.BookingID" data-toggle="tooltip" data-placement="top" title="Bestätigen"><i class="fa fa-check color-muted m-r-5"></i> </a>
+                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Löschen"><i class="fa fa-close color-danger"></i></a>
+                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Warten"><i class="fa fa-pause color-danger"></i></a>
+                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Aktualisieren"><i class="fa fa-pencil color-danger"></i></a>
+                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Details"><i class="fa fa-info color-danger"></i></a>
+                                    </span>
+                                </td>
+@*                                 <td><a href="" class="btn btn-outline-danger">Stornieren</a></td>
+                                <td><a href="" class="btn btn-outline-warning">Warten</a></td>
+                                <td><a href="" class="btn btn-outline-info">Aktualisieren</a></td>
+                                <td><a href=""  class="btn btn-outline-dark">Details</a></td> *@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

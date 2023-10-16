@@ -13,5 +13,28 @@ namespace HotelProjectDataAccessLayer.EntityFramework
 {
     public class EfBookingDal : GenericRepository<Booking>, IBookingDal
     {
+        public void ConfirmBookingStatus(Booking booking)
+        {
+            var context = new Context();
+            var value = context.Bookings.Where(x => x.BookingID == booking.BookingID).FirstOrDefault();
+            if(value.Status == false)
+                value.Status = true;
+
+            if(value.Status == true)
+                value.Status = false;
+            context.SaveChanges();
+        }
+
+        public void ConfirmBookingStatus2(int id)
+        {
+            var context = new Context();
+            var value = context.Bookings.Find(id);
+            if (value.Status == false)
+                value.Status = true;
+
+            if (value.Status == true)
+                value.Status = false;
+            context.SaveChanges(); 
+        }
     }
 }

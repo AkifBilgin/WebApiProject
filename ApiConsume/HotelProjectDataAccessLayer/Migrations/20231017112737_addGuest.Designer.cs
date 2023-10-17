@@ -4,14 +4,16 @@ using HotelProjectDataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelProjectDataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231017112737_addGuest")]
+    partial class addGuest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,8 +163,8 @@ namespace HotelProjectDataAccessLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AdultCount")
-                        .HasColumnType("int");
+                    b.Property<string>("AdultCount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Checkin")
                         .HasColumnType("datetime2");
@@ -170,8 +172,8 @@ namespace HotelProjectDataAccessLayer.Migrations
                     b.Property<DateTime>("Checkout")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ChildCount")
-                        .HasColumnType("int");
+                    b.Property<string>("ChildCount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -182,8 +184,8 @@ namespace HotelProjectDataAccessLayer.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoomCount")
-                        .HasColumnType("int");
+                    b.Property<string>("RoomCount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SpecialRequest")
                         .HasColumnType("nvarchar(max)");
@@ -194,33 +196,6 @@ namespace HotelProjectDataAccessLayer.Migrations
                     b.HasKey("BookingID");
 
                     b.ToTable("Bookings");
-                });
-
-            modelBuilder.Entity("HotelProjectEntityLayer.Concrete.Contact", b =>
-                {
-                    b.Property<int>("ContactID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ContactID");
-
-                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("HotelProjectEntityLayer.Concrete.Guest", b =>

@@ -1,0 +1,28 @@
+﻿@model List<ResultAboutUsDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Titel1</th>
+        <th>Titel2</th>
+        <th>Update</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.AboutUsID</th>
+            <td>@item.Titel1</td>
+            <td>@item.Titel2</td>
+            <td><a href="/AdminAbout/UpdateAboutUs/@item.AboutUsID" class="btn mb-1 btn-rounded btn-outline-success">Update</a></td>
+
+
+
+        </tr>
+    }
+</table>
+
+

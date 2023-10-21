@@ -1,4 +1,5 @@
 ﻿using HotelProjectWebUI.Dtos.BookingDto;
+using HotelProjectWebUI.Dtos.RoomDto;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -32,18 +33,19 @@ namespace HotelProjectWebUI.Controllers
 
         public async Task<IActionResult> ConfirmBooking(ConfirmReservationDto confirmReservationDto)
         {
-           
-           var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(confirmReservationDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8,"application/json");
-            var responseMessage = await client.PutAsync("http://localhost:38127/api/Booking/ConfirmBooking2/{confirmReservationDto.BookingID.Value}", stringContent);
-            if(responseMessage.IsSuccessStatusCode)
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync($"http://localhost:38127/api/Booking/ConfirmBooking/?id={confirmReservationDto.BookingID}", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
             {
+                confirmReservationDto.Status = true;
                 return RedirectToAction("Index");
             }
-            
-            
+
+
             return RedirectToAction("Index");
         }
+
     }
 }

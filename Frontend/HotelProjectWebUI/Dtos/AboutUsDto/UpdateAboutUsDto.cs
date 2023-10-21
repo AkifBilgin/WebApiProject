@@ -1,6 +1,6 @@
 ﻿namespace HotelProjectWebUI.Dtos.AboutUsDto
 {
-    public class UpdateAboutDto
+    public class UpdateAboutUsDto
     {
         public int AboutUsID { get; set; }
         public string Titel1 { get; set; }

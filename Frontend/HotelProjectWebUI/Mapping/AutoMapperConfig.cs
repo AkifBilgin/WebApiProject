@@ -22,7 +22,7 @@ namespace HotelProjectWebUI.Mapping
             CreateMap<CreateServiceDto, Service>().ReverseMap();
 
             CreateMap<ResultAboutUsDto, AboutUs>().ReverseMap();
-            CreateMap<UpdateAboutDto, AboutUs>().ReverseMap();
+            CreateMap<UpdateAboutUsDto, AboutUs>().ReverseMap();
 
 
             CreateMap<CreateNewUserDto, AppUser>().ReverseMap();

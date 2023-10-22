@@ -4,14 +4,16 @@ using HotelProjectDataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelProjectDataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231022163640_addSendMeassage")]
+    partial class addSendMeassage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -296,10 +298,19 @@ namespace HotelProjectDataAccessLayer.Migrations
                     b.Property<string>("ReceiverEmail")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ReceiverName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SenderEmail")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SenderName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SendMessageID");

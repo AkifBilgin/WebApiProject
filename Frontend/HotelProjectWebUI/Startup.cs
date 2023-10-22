@@ -1,5 +1,7 @@
+using FluentValidation.AspNetCore;
 using HotelProjectDataAccessLayer.Concrete;
 using HotelProjectEntityLayer.Concrete;
+using HotelProjectWebUI.Dtos.SubscribeDto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -30,6 +32,7 @@ namespace HotelProjectWebUI
 			services.AddAutoMapper(typeof(Startup));
 			services.AddHttpClient();
 			services.AddControllersWithViews();
+			services.AddFluentValidation();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

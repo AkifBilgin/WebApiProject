@@ -20,7 +20,7 @@ namespace HotelProjectWebAPi.Controllers
         [HttpGet]
         public IActionResult GetAllContacts()
         {
-           var values = _contactService.TGetAll();
+            var values = _contactService.TGetAll();
             return Ok(values);
         }
 
@@ -30,6 +30,13 @@ namespace HotelProjectWebAPi.Controllers
             contact.Date = Convert.ToDateTime(DateTime.Now.ToString());
             _contactService.TAdd(contact);
             return Ok();
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetContactMessageById(int id)
+        {
+            var value = _contactService.TGetById(id);
+            return Ok(value);
+
         }
     }
 }

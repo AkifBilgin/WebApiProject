@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace HotelProjectWebUI.Controllers
         }
 
         public async Task<IActionResult> Inbox()
-        { 
+        {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("http://localhost:38127/api/Contact");
             if (responseMessage.IsSuccessStatusCode)
@@ -69,12 +70,41 @@ namespace HotelProjectWebUI.Controllers
         }
 
         public PartialViewResult SidebarAdminContactPartial()
-        { 
+        {
             return PartialView();
         }
+
         public PartialViewResult SidebarAdminContactCategoryPartial()
         {
             return PartialView();
         }
+
+
+        public async Task<IActionResult> MessageDetails(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"http://localhost:38127/api/Contact/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<GetMessageByIdDto>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> SendMessageDetails(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"http://localhost:38127/api/SendMessage/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<GetSendMessageByIdDto>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+
     }
 }

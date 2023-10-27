@@ -1,5 +1,4 @@
 ﻿using HotelProjectDataAccessLayer.Abstract;
-using HotelProjectDataAccessLayer.Concrete;
 using HotelProjectDataAccessLayer.Repositories;
 using HotelProjectEntityLayer.Concrete;
 using System;
@@ -10,14 +9,7 @@ using System.Threading.Tasks;
 
 namespace HotelProjectDataAccessLayer.EntityFramework
 {
-    public class EfSendMessageDal : GenericRepository<SendMessage>, ISendMessageDal
+    public class EfMessageCategoryDal : GenericRepository<MessageCategory>, IMessageCategoryDal
     {
-        public int GetSendMessageCount()
-        {
-            using (Context context = new Context())
-            {
-                return context.SendMessages.Count();
-            }
-        }
     }
 }

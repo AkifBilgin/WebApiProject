@@ -38,6 +38,11 @@ namespace HotelProjectBusinessLayer.Concrete
             return _contactDal.GetById(id);
         }
 
+        public int TGetContactCount()
+        {
+            return _contactDal.GetContactCount();
+        }
+
         public void TUpdate(Contact entity)
         {
            _contactDal.Update(entity);

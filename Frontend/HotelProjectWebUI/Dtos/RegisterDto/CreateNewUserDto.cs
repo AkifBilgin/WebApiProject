@@ -15,7 +15,8 @@ namespace HotelProjectWebUI.Dtos.RegisterDto
         [Required(ErrorMessage = "Bitte einen Passwort eingeben")]
         public string Password { get; set; }
         [Required]
-        [Compare("Password", ErrorMessage = "Passwörte stimmen nicht überein")]
+        [Compare("Password", ErrorMessage = "Passwörter stimmen nicht überein")]
         public string ConfirmPassword { get; set; }
+        
     }
 }

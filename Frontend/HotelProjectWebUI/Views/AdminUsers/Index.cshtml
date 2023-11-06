@@ -1,4 +1,4 @@
-﻿@model List<HotelProjectEntityLayer.Concrete.AppUser>
+﻿@model List<ResultAppUserDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
@@ -11,6 +11,7 @@
             <th>#</th>
             <th>Name</th>
             <th>Stadt</th>
+            <th>Arbeitsort</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -21,6 +22,7 @@
                 <td><img src="~/adminweb/adminTheme/images/avatar/5.jpg" class=" rounded-circle mr-3" alt="picture"></td>
                 <td>@item.FirstName @item.LastName</td>
                 <td>@item.City</td>
+                <td>@item.WorkLocation.WorkLocationName</td>
                 <td><i class="fa fa-circle-o text-success  mr-2"></i>Aktiv</td>
             </tr>
         }

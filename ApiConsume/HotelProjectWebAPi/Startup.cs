@@ -18,33 +18,33 @@ using System.Threading.Tasks;
 
 namespace HotelProjectWebAPi
 {
-	public class Startup
-	{
-		public Startup(IConfiguration configuration)
-		{
-			Configuration = configuration;
-		}
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
-		public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
-		public void ConfigureServices(IServiceCollection services)
-		{
-			services.AddDbContext<Context>();
-			services.AddScoped<IStaffDal, EfStaffDal>();
-			services.AddScoped<IStaffService, StaffManager>();
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<Context>();
+            services.AddScoped<IStaffDal, EfStaffDal>();
+            services.AddScoped<IStaffService, StaffManager>();
 
-			services.AddScoped<IRoomDal, EfRoomDal>();
-			services.AddScoped<IRoomService, RoomManager>();
+            services.AddScoped<IRoomDal, EfRoomDal>();
+            services.AddScoped<IRoomService, RoomManager>();
 
-			services.AddScoped<IServiceDal, EfServiceDal>();
-			services.AddScoped<IServiceService, ServiceManager>();
+            services.AddScoped<IServiceDal, EfServiceDal>();
+            services.AddScoped<IServiceService, ServiceManager>();
 
-			services.AddScoped<ITestimonialDal, EfTestimonialDal>();
-			services.AddScoped<ITestimonialService, TestimonialManager>();
+            services.AddScoped<ITestimonialDal, EfTestimonialDal>();
+            services.AddScoped<ITestimonialService, TestimonialManager>();
 
-			services.AddScoped<ISubscribeDal, EfSubscribeDal>();
-			services.AddScoped<ISubscribeService, SubscribeManager>();
+            services.AddScoped<ISubscribeDal, EfSubscribeDal>();
+            services.AddScoped<ISubscribeService, SubscribeManager>();
 
             services.AddScoped<IAboutUsDal, EfAboutUsDal>();
             services.AddScoped<IAboutUsService, AboutUsManager>();
@@ -67,39 +67,46 @@ namespace HotelProjectWebAPi
             services.AddScoped<IWorkLocationDal, EfWorkLocationDal>();
             services.AddScoped<IWorkLocationService, WorkLocationManager>();
 
+            services.AddScoped<IAppUserDal, EfAppUserDal>();
+            services.AddScoped<IAppUserService, AppUserManager>();
+
             services.AddAutoMapper(typeof(Startup));
-			services.AddCors(opt =>
-			{
-				opt.AddPolicy("HotelApiCors", opts =>	{
-					opts.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-				});
-			});
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("HotelApiCors", opts =>
+                {
+                    opts.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
 
-			services.AddControllers();
-			services.AddSwaggerGen(c =>
-			{
-				c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelProjectWebAPi", Version = "v1" });
-			});
-		}
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            ); 
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-				app.UseSwagger();
-				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelProjectWebAPi v1"));
-			}
-			
-			app.UseRouting();
-			app.UseCors("HotelApiCors");
-			app.UseAuthorization();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelProjectWebAPi", Version = "v1" });
+            });
+        }
 
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapControllers();
-			});
-		}
-	}
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelProjectWebAPi v1"));
+            }
+
+            app.UseRouting();
+            app.UseCors("HotelApiCors");
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
+    }
 }

@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Folder Include="ValidationRules\" />
-    <Folder Include="ViewComponents\Dashboard\" />
   </ItemGroup>
 
 </Project>

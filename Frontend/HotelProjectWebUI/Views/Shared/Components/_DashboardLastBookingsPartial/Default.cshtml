@@ -1,0 +1,58 @@
+﻿@model List<ResultBookingDto>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="active-member">
+                    <div class="table-responsive">
+                        <table class="table table-xs mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Gast</th>
+                                    <th>Email</th>
+                                    <th>Checkin</th>
+                                    <th>Checkout</th>
+                                    <th>Wünsche</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.Mail</td>
+                                        <td>@item.Checkin.ToShortDateString()</td>
+                                        <td>@item.Checkout.ToShortDateString()</td>
+                                        @if (item.SpecialRequest is null)
+                                        {
+                                            <td>-</td>
+                                        }
+                                        else
+                                        {
+                                            <td>@item.SpecialRequest</td>
+                                        }
+
+                                        @if (item.Status is true)
+                                        {
+                                            <td><i class="fa fa-circle-o text-success  mr-2"></i>Bestätigt</td>
+                                        }
+                                        else
+                                        {
+                                            <td><i class="fa fa-circle-o text-danger  mr-2"></i>Offen</td>
+                                        }
+                                        
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

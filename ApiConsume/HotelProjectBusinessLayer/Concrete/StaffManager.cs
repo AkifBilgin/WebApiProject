@@ -18,7 +18,12 @@ namespace HotelProjectBusinessLayer.Concrete
 			_staffDal = staffDal;
 		}
 
-		public void TAdd(Staff entity)
+        public List<Staff> GetLastFourStaff()
+        {
+            return _staffDal.GetLastFourStaff();
+        }
+
+        public void TAdd(Staff entity)
 		{
 			_staffDal.Add(entity);
 		}

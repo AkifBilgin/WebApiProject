@@ -22,6 +22,13 @@ namespace HotelProjectWebAPi.Controllers
            var values =  _bookingService.TGetAll();
             return Ok(values);
         }
+        [HttpGet("GetLastSixBookings")]
+        public IActionResult GetLastSixBookings()
+        {
+            var values = _bookingService.GetLastSixBookings();
+            return Ok(values);
+        }
+
         [HttpPost("AddBooking")]
         public IActionResult AddBooking(Booking booking)
         {

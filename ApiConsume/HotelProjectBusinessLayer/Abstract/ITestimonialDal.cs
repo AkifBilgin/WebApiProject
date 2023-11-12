@@ -9,5 +9,7 @@ namespace HotelProjectBusinessLayer.Abstract
 {
 	public interface ITestimonialService : IGenericService<Testimonial>
 	{
-	}
+        List<Testimonial> GetLastFourTestimonials();
+
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using HotelProjectDataAccessLayer.Abstract;
+using HotelProjectDataAccessLayer.Concrete;
 using HotelProjectDataAccessLayer.Repositories;
 using HotelProjectEntityLayer.Concrete;
 using System;
@@ -9,7 +10,12 @@ using System.Threading.Tasks;
 
 namespace HotelProjectDataAccessLayer.EntityFramework
 {
-	public class EfTestimonialDal: GenericRepository<Testimonial>, ITestimonialDal
-	{
-	}
+    public class EfTestimonialDal : GenericRepository<Testimonial>, ITestimonialDal
+    {
+        public List<Testimonial> GetLastFourTestimonials()
+        {
+            using var context = new Context();
+            return context.Testimonials.OrderByDescending(x=>x.TestimonialID).Take(4).ToList();
+        }
+    }
 }

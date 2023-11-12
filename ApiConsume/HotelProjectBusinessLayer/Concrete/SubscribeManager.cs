@@ -18,7 +18,12 @@ namespace HotelProjectBusinessLayer.Concrete
 			_subscribeDal = subscribeDal;
 		}
 
-		public void TAdd(Subscribe entity)
+        public int SubscribeCount()
+        {
+            return _subscribeDal.SubscribeCount();
+        }
+
+        public void TAdd(Subscribe entity)
 		{
 			_subscribeDal.Add(entity);
 		}

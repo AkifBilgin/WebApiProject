@@ -17,13 +17,20 @@ namespace HotelProjectWebAPi.Controllers
 			_staffService = staffService;
 		}
 
-		[HttpGet]
+		[HttpGet("StaffList")]
 		public IActionResult StaffList()
 		{
 			var values = _staffService.TGetAll();
 			return Ok(values);
 		}
-		[HttpPost]
+		[HttpGet("GetLastFourStaff")]
+		public IActionResult GetLastFourStaff()
+		{
+			var values = _staffService.GetLastFourStaff();
+			return Ok(values);
+		}
+
+        [HttpPost]
 		public IActionResult AddStaff(Staff staff)
 		{
 			_staffService.TAdd(staff);

@@ -11,5 +11,9 @@ namespace HotelProjectDataAccessLayer.Abstract
     {
         void ConfirmBookingStatus(Booking booking);
         void ConfirmBookingStatus2(int id);
+        int GetBookingCount();
+        int GetBookingsWithoutConfirmation();
+        List<Booking> GetLastSixBookings();
+
     }
 }

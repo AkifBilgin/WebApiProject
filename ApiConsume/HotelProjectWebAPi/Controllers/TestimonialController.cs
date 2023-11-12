@@ -22,7 +22,16 @@ namespace HotelProjectWebAPi.Controllers
 			var values = _testimonialService.TGetAll();
 			return Ok(values);
 		}
-		[HttpPost]
+
+		[HttpGet("GetLastFourTestimonials")]
+		public IActionResult GetLastFourTestimonials()
+		{
+			var values = _testimonialService.GetLastFourTestimonials();
+			return Ok(values);
+			
+		}
+
+        [HttpPost]
 		public IActionResult AddStaff(Testimonial testimonial)
 		{
 			_testimonialService.TAdd(testimonial);

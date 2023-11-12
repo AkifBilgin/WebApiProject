@@ -15,7 +15,7 @@ namespace HotelProjectDataAccessLayer.EntityFramework
     {
         public void ConfirmBookingStatus(Booking booking)
         {
-            var context = new Context();
+           using var context = new Context();
             var value = context.Bookings.Where(x => x.BookingID == booking.BookingID).FirstOrDefault();
             if(value.Status == false)
                 value.Status = true;
@@ -27,7 +27,7 @@ namespace HotelProjectDataAccessLayer.EntityFramework
 
         public void ConfirmBookingStatus2(int id)
         {
-            var context = new Context();
+            using var context = new Context();
             var value = context.Bookings.Find(id);
             if (value.Status == false)
                 value.Status = true;
@@ -35,6 +35,29 @@ namespace HotelProjectDataAccessLayer.EntityFramework
             if (value.Status == true)
                 value.Status = false;
             context.SaveChanges(); 
+        }
+
+        public int GetBookingCount()
+        {
+            using (var context = new Context())
+            {
+                int count = context.Bookings.Count();
+                return count;
+            }
+        }
+
+        public int GetBookingsWithoutConfirmation()
+        {
+            using var context = new Context();
+            int count = context.Bookings.Where(x=>x.Status == false).Count();
+            return count;
+        }
+
+        public List<Booking> GetLastSixBookings()
+        {
+            using var context = new Context();
+            var values = context.Bookings.OrderByDescending(x=>x.BookingID).Take(6).ToList();
+            return values;
         }
     }
 }

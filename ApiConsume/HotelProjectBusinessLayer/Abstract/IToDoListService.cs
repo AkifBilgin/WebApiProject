@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 
 namespace HotelProjectBusinessLayer.Abstract
 {
-	public interface IStaffService : IGenericService<Staff>
-	{
-        int TGetStaffCount();
-        List<Staff> GetLastFourStaff();
-
+    public interface IToDoListService : IGenericService<ToDoList>
+    {
     }
 }

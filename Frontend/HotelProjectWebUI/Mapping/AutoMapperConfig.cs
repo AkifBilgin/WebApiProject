@@ -9,6 +9,7 @@ using HotelProjectWebUI.Dtos.RegisterDto;
 using HotelProjectWebUI.Dtos.ServiceDto;
 using HotelProjectWebUI.Dtos.StaffDto;
 using HotelProjectWebUI.Dtos.SubscribeDto;
+using HotelProjectWebUI.Dtos.ToDoListDto;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
 
@@ -38,6 +39,9 @@ namespace HotelProjectWebUI.Mapping
             CreateMap<ConfirmReservationDto, Booking>().ReverseMap();
 
             CreateMap<ResultAppUserDto, AppUser>().ReverseMap();
+
+            CreateMap<ResultToDoListDto, ToDoList>().ReverseMap();
+            CreateMap<CreateToDoListDto, ToDoList>().ReverseMap();
 
         }
     }

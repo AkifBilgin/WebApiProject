@@ -1,0 +1,8 @@
+﻿
+@model CreateToDoListDto
+
+<form method="post" asp-action="AddTask" asp-controller="ToDoList">
+    <input type="text" class="tdl-new form-control" placeholder="Neue Aufgabe" asp-for="Description">
+    <br />
+    <button class="btn btn-outline-dark" type="submit">Hinzufügen</button>
+</form>

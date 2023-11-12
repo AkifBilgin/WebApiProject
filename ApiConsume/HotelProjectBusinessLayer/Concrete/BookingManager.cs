@@ -28,6 +28,21 @@ namespace HotelProjectBusinessLayer.Concrete
             _bookingDal.ConfirmBookingStatus2(id); 
         }
 
+        public int GetBookingCount()
+        {
+            return _bookingDal.GetBookingCount();
+        }
+
+        public int GetBookingsWithoutConfirmation()
+        {
+            return _bookingDal.GetBookingsWithoutConfirmation();
+        }
+
+        public List<Booking> GetLastSixBookings()
+        {
+            return _bookingDal.GetLastSixBookings();
+        }
+
         public void TAdd(Booking entity)
         {
             _bookingDal.Add(entity);

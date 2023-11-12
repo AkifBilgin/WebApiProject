@@ -4,14 +4,16 @@ using HotelProjectDataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelProjectDataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231111133512_addStaffImageUrl")]
+    partial class addStaffImageUrl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -426,27 +428,6 @@ namespace HotelProjectDataAccessLayer.Migrations
                     b.HasKey("TestimonialID");
 
                     b.ToTable("Testimonials");
-                });
-
-            modelBuilder.Entity("HotelProjectEntityLayer.Concrete.ToDoList", b =>
-                {
-                    b.Property<int>("ToDoListID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Link")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("ToDoListID");
-
-                    b.ToTable("ToDoLists");
                 });
 
             modelBuilder.Entity("HotelProjectEntityLayer.Concrete.WorkLocation", b =>

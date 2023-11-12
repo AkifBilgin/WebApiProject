@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ApiConsume\HotelProjectBusinessLayer\HotelProjectBusinessLayer.csproj" />
     <ProjectReference Include="..\..\ApiConsume\HotelProjectDataAccessLayer\HotelProjectDataAccessLayer.csproj" />
     <ProjectReference Include="..\..\ApiConsume\HotelProjectEntityLayer\HotelProjectEntityLayer.csproj" />
   </ItemGroup>

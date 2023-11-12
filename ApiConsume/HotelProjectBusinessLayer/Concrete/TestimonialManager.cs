@@ -18,7 +18,12 @@ namespace HotelProjectBusinessLayer.Concrete
 			_testimonialDal = testimonialDal;
 		}
 
-		public void TAdd(Testimonial entity)
+        public List<Testimonial> GetLastFourTestimonials()
+        {
+            return _testimonialDal.GetLastFourTestimonials();
+        }
+
+        public void TAdd(Testimonial entity)
 		{
 			_testimonialDal.Add(entity);
 		}

@@ -9,5 +9,6 @@ namespace HotelProjectDataAccessLayer.Abstract
 {
 	public interface ITestimonialDal : IGenericDal<Testimonial>
 	{
+		List<Testimonial> GetLastFourTestimonials();
 	}
 }

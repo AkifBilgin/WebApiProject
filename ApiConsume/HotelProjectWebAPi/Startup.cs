@@ -70,6 +70,9 @@ namespace HotelProjectWebAPi
             services.AddScoped<IAppUserDal, EfAppUserDal>();
             services.AddScoped<IAppUserService, AppUserManager>();
 
+            services.AddScoped<IToDoListDal, EfToDoListDal>();
+            services.AddScoped<IToDoListService, ToDoListManager>();
+
             services.AddAutoMapper(typeof(Startup));
             services.AddCors(opt =>
             {

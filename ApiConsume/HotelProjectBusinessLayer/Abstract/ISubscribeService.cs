@@ -9,5 +9,7 @@ namespace HotelProjectBusinessLayer.Abstract
 {
 	public interface ISubscribeService : IGenericService<Subscribe>
 	{
-	}
+        int SubscribeCount();
+
+    }
 }

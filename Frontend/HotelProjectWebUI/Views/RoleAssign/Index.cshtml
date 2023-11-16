@@ -1,0 +1,24 @@
+﻿@model List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<h1>Benutzer</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Benutzer</th>
+        <th>Berechtigung hinzufügen</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+      <td><img src="@item.ImageUrl" class="rounded-circle mr-3" alt="" />@item.FirstName @item.LastName</td>
+          <td><a href="/RoleAssign/AssignRole/@item.Id" class="btn btn-warning">Berechtigung hinzufügen</a><td>
+
+
+
+        </tr>
+    }
+</table>

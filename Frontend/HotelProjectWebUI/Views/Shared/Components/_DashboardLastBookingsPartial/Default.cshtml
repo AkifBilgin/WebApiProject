@@ -35,15 +35,23 @@
                                             <td>@item.SpecialRequest</td>
                                         }
 
-                                        @if (item.Status is true)
+                                        @if (item.BookingStatus == BookingsStatus.Bestätigt.ToString())
                                         {
                                             <td><i class="fa fa-circle-o text-success  mr-2"></i>Bestätigt</td>
                                         }
-                                        else
+                                        else if(item.BookingStatus == BookingsStatus.Offen.ToString())
                                         {
-                                            <td><i class="fa fa-circle-o text-danger  mr-2"></i>Offen</td>
+                                            <td><i class="fa fa-circle-o text-warning  mr-2"></i>Offen</td>
                                         }
+                                        else if (item.BookingStatus == BookingsStatus.Abgelehnt.ToString())
+                                        {
+                                            <td><i class="fa fa-circle-o text-danger  mr-2"></i>Abgelehnt</td>
+                                        }
+                                        <td><i class="fa fa-circle-o text-black  mr-2"></i>Warten</td>
+                                        {
                                         
+                                        }
+
                                     </tr>
 
                                 }

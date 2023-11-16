@@ -32,6 +32,7 @@ namespace HotelProjectWebAPi.Controllers
         [HttpPost("AddBooking")]
         public IActionResult AddBooking(Booking booking)
         {
+            booking.BookingStatus = BookingsStatus.Offen.ToString();
             _bookingService.TAdd(booking);
             return Ok();
         }
@@ -56,17 +57,24 @@ namespace HotelProjectWebAPi.Controllers
             return Ok(value);
         }
 
-        [HttpPut("ConfirmBooking")]
-        public IActionResult ConfirmBooking(Booking booking)
+
+        [HttpGet("BookingApproved")]
+        public IActionResult BookingApproved(int id)
         {
-             _bookingService.ConfirmBookingStatus(booking);
+            _bookingService.BookingStatusChangeApproves(id);
+            return Ok();
+        }
+        [HttpGet("CancelBooking")]
+        public IActionResult CancelBooking(int id)
+        {
+            _bookingService.CancelBooking(id);
             return Ok();
         }
 
-        [HttpPut("ConfirmBooking2")]
-        public IActionResult ConfirmBooking2(int id)
+        [HttpGet("AbideBooking")]
+        public IActionResult AbideBooking(int id)
         {
-            _bookingService.ConfirmBookingStatus2(id);
+            _bookingService.AbideBooking(id);
             return Ok();
         }
     }

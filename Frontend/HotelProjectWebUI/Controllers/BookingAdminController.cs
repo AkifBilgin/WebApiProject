@@ -31,21 +31,44 @@ namespace HotelProjectWebUI.Controllers
            return View();
         }
 
-        public async Task<IActionResult> ConfirmBooking(ConfirmReservationDto confirmReservationDto)
+
+
+
+        public async Task<IActionResult> ApprovedResevation(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(confirmReservationDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync($"http://localhost:38127/api/Booking/ConfirmBooking/?id={confirmReservationDto.BookingID}", stringContent);
+            var responseMessage = await client.GetAsync($"http://localhost:38127/api/Booking/BookingApproved?id={id}");
             if (responseMessage.IsSuccessStatusCode)
             {
-                confirmReservationDto.Status = true;
                 return RedirectToAction("Index");
             }
 
 
             return RedirectToAction("Index");
         }
+        public async Task<IActionResult> CancelBooking(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"http://localhost:38127/api/Booking/CancelBooking?id={id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
 
+
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> AbideBooking(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"http://localhost:38127/api/Booking/AbideBooking?id={id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+
+
+            return RedirectToAction("Index");
+        }
     }
 }

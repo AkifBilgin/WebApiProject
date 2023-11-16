@@ -13,28 +13,39 @@ namespace HotelProjectDataAccessLayer.EntityFramework
 {
     public class EfBookingDal : GenericRepository<Booking>, IBookingDal
     {
-        public void ConfirmBookingStatus(Booking booking)
+        public void AbideBooking(int id)
         {
-           using var context = new Context();
-            var value = context.Bookings.Where(x => x.BookingID == booking.BookingID).FirstOrDefault();
-            if(value.Status == false)
-                value.Status = true;
+            using var context = new Context();
+            var values = context.Bookings.Find(id);
+            if (values.BookingStatus == BookingsStatus.Offen.ToString())
+            {
+                values.BookingStatus = BookingsStatus.Warten.ToString();
+            }
 
-            if(value.Status == true)
-                value.Status = false;
             context.SaveChanges();
         }
 
-        public void ConfirmBookingStatus2(int id)
+        public void BookingStatusChangeApproves(int id)
         {
             using var context = new Context();
-            var value = context.Bookings.Find(id);
-            if (value.Status == false)
-                value.Status = true;
+            var values = context.Bookings.Find(id);
+            if (values.BookingStatus == BookingsStatus.Offen.ToString() || values.BookingStatus == BookingsStatus.Warten.ToString())
+            {
+                values.BookingStatus = BookingsStatus.Bestätigt.ToString();
+            }
 
-            if (value.Status == true)
-                value.Status = false;
-            context.SaveChanges(); 
+            context.SaveChanges();
+        }
+
+        public void CancelBooking(int id)
+        {
+            using var context = new Context();
+            var values = context.Bookings.Find(id);
+            if(values.BookingStatus == BookingsStatus.Offen.ToString() || values.BookingStatus == BookingsStatus.Warten.ToString() )
+            {
+                values.BookingStatus = BookingsStatus.Abgelehnt.ToString();
+            }
+            context.SaveChanges();
         }
 
         public int GetBookingCount()
@@ -49,7 +60,7 @@ namespace HotelProjectDataAccessLayer.EntityFramework
         public int GetBookingsWithoutConfirmation()
         {
             using var context = new Context();
-            int count = context.Bookings.Where(x=>x.Status == false).Count();
+            int count = context.Bookings.Where(x=>x.BookingStatus != BookingsStatus.Bestätigt.ToString()).Count();
             return count;
         }
 

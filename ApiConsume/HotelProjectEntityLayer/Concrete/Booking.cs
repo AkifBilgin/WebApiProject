@@ -18,6 +18,13 @@ namespace HotelProjectEntityLayer.Concrete
         public int RoomCount { get; set; }
         public string SpecialRequest { get; set; }
         public string Description { get; set; }
-        public bool Status { get; set; }
+        public string BookingStatus { get; set; }
+    }
+    public enum BookingsStatus
+    {
+        Bestätigt,
+        Offen,
+        Abgelehnt,
+        Warten
     }
 }

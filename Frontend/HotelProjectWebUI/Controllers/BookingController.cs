@@ -1,4 +1,5 @@
-﻿using HotelProjectWebUI.Dtos.BookingDto;
+﻿using HotelProjectEntityLayer.Concrete;
+using HotelProjectWebUI.Dtos.BookingDto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
@@ -31,11 +32,11 @@ namespace HotelProjectWebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddBooking(CreateBookingDto createBookingDto)
         {
-            createBookingDto.Status = false;
+            createBookingDto.BookingStatus = BookingsStatus.Offen.ToString();
             var client = _httpClientFactory.CreateClient();
             var jsondata = JsonConvert.SerializeObject(createBookingDto);
             StringContent stringContent = new StringContent(jsondata, Encoding.UTF8, "application/json");
-            await client.PostAsync("http://localhost:38127/api/Booking", stringContent);
+            await client.PostAsync("http://localhost:38127/api/Booking/AddBooking", stringContent);
             return RedirectToAction("Index", "Default");
         }
     }

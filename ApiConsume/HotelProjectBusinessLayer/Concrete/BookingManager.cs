@@ -18,14 +18,19 @@ namespace HotelProjectBusinessLayer.Concrete
             _bookingDal = bookingDal;
         }
 
-        public void ConfirmBookingStatus(Booking booking)
+        public void AbideBooking(int id)
         {
-            _bookingDal.ConfirmBookingStatus(booking);
+            _bookingDal.AbideBooking(id);
         }
 
-        public void ConfirmBookingStatus2(int id)
+        public void BookingStatusChangeApproves(int id)
         {
-            _bookingDal.ConfirmBookingStatus2(id); 
+            _bookingDal.BookingStatusChangeApproves(id);
+        }
+
+        public void CancelBooking(int id)
+        {
+             _bookingDal.CancelBooking(id);
         }
 
         public int GetBookingCount()

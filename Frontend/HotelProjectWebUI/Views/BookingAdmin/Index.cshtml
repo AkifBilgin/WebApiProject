@@ -29,14 +29,13 @@
                                 <th>@item.Name</th>
                                 <td>@item.Checkin.ToShortDateString()</td>
                                 <td>@item.Checkout.ToShortDateString()</td>
-                                <td><span class="badge badge-primary px-2">@item.Status</span></td>
+                                <td><span class="badge badge-primary px-2">@item.BookingStatus</span></td>
                                @*  <td><a href="" class="btn btn-outline-primary">Bestätigen</a></td> *@
                                 <td>
                                     <span>
-                                        <a href="" data-booking-id="@item.BookingID" data-toggle="tooltip" data-placement="top" title="Bestätigen"><i class="fa fa-check color-muted m-r-5"></i> </a>
-                                        <a href="#" data-booking-id="@item.BookingID" data-toggle="tooltip" data-placement="top" title="Löschen"><i class="fa fa-close color-danger"></i></a>
-                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Warten"><i class="fa fa-pause color-danger"></i></a>
-                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Aktualisieren"><i class="fa fa-pencil color-danger"></i></a>
+                                        <a href="/BookingAdmin/ApprovedResevation/@item.BookingID" data-toggle="tooltip" data-placement="top" title="Bestätigen"><i class="fa fa-check color-muted m-r-5"></i> </a>
+                                        <a href="/BookingAdmin/CancelBooking/@item.BookingID" data-toggle="tooltip" data-placement="top" title="Ablehnen"><i class="fa fa-close color-danger"></i></a>
+                                        <a href="/BookingAdmin/AbideBooking/@item.BookingID" data-toggle="tooltip" data-placement="top" title="Warten"><i class="fa fa-pause color-danger"></i></a>
                                         <a href="#" data-toggle="tooltip" data-placement="top" title="Details"><i class="fa fa-info color-danger"></i></a>
                                     </span>
                                 </td>
